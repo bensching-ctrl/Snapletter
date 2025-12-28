@@ -16,11 +16,18 @@ export function LandingNav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-16">
+    <header
+      className="fixed top-0 left-0 right-0 z-50"
+      style={{
+        // Safe area support for iOS notch/Dynamic Island
+        paddingTop: 'env(safe-area-inset-top, 0px)',
+        height: 'calc(4rem + env(safe-area-inset-top, 0px))'
+      }}
+    >
       {/* Background with blur - Extended for iOS overscroll */}
       <div className="absolute inset-0 -top-20 bg-[oklch(0.105_0.020_256/0.85)] backdrop-blur-md border-b border-[oklch(0.20_0.02_260/0.5)]" />
 
-      <nav className="relative h-full container mx-auto px-4 lg:px-8 flex items-center justify-between">
+      <nav className="relative h-16 container mx-auto px-4 lg:px-8 flex items-center justify-between">
         {/* Logo / Brand */}
         <Link
           href="/"
@@ -71,7 +78,7 @@ export function LandingNav() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-16 left-0 right-0 bg-[oklch(0.105_0.020_256/0.98)] backdrop-blur-md border-b border-[oklch(0.20_0.02_260/0.5)]">
+        <div className="md:hidden absolute left-0 right-0 bg-[oklch(0.105_0.020_256/0.98)] backdrop-blur-md border-b border-[oklch(0.20_0.02_260/0.5)]" style={{ top: '4rem' }}>
           <div className="container mx-auto px-4 py-4 space-y-2">
             {NAV_ITEMS.map((item) => (
               <Link

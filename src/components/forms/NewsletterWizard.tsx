@@ -655,7 +655,13 @@ export function NewsletterWizard({ defaultValues, onSubmit, onSaveDraft, onCance
         )}
 
         {/* Sticky Action Bar */}
-        <div className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-t z-50">
+        <div
+          className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-t z-50"
+          style={{
+            // Safe area support for iOS home indicator
+            paddingBottom: 'env(safe-area-inset-bottom, 0px)'
+          }}
+        >
           <div className="max-w-3xl mx-auto px-4 py-4">
             {/* Firmenprofil fehlt Warning */}
             {!hasBrandId && currentStep === 3 && (
