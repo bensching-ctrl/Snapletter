@@ -54,7 +54,7 @@ export default function LandingPage() {
                 </div>
               </div>
               {/* Mini UI Skeleton */}
-              <div className="mt-4 p-3 rounded-lg bg-background border border-border/60 select-none">
+              <div className="mt-4 p-3 rounded-lg bg-background border border-border/60 select-none hidden md:block">
                 <div className="space-y-2">
                   <div className="h-2 w-20 rounded bg-muted" />
                   <div className="h-3 w-full rounded bg-muted/60" />
@@ -82,7 +82,7 @@ export default function LandingPage() {
                 </div>
               </div>
               {/* Mini UI Skeleton */}
-              <div className="mt-4 p-3 rounded-lg bg-background border border-border/60 select-none">
+              <div className="mt-4 p-3 rounded-lg bg-background border border-border/60 select-none hidden md:block">
                 <div className="space-y-2">
                   <div className="h-2 w-16 rounded bg-muted" />
                   <div className="h-8 w-full rounded bg-muted/60" />
@@ -113,7 +113,7 @@ export default function LandingPage() {
                 </div>
               </div>
               {/* Mini UI Skeleton - Generated */}
-              <div className="mt-4 p-3 rounded-lg bg-background border border-primary/30 select-none">
+              <div className="mt-4 p-3 rounded-lg bg-background border border-primary/30 select-none hidden md:block">
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="h-3 w-3 text-primary" />

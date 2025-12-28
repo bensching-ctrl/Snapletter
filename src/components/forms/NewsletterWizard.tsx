@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { newsletterSchema, type NewsletterFormData } from '@/lib/validations/newsletter';
@@ -60,6 +60,7 @@ export function NewsletterWizard({ defaultValues, onSubmit, onSaveDraft, onCance
   const [imagesOpen, setImagesOpen] = useState(false);
   const [planningOpen, setPlanningOpen] = useState(false);
   const [demoApplied, setDemoApplied] = useState(false);
+  const brandFieldRef = useRef<HTMLDivElement>(null);
 
   const form = useForm<NewsletterFormData>({
     resolver: zodResolver(newsletterSchema),
@@ -98,6 +99,19 @@ export function NewsletterWizard({ defaultValues, onSubmit, onSaveDraft, onCance
 
   const missingFields = getMissingFields();
   const canGenerate = missingFields.length === 0;
+
+  // Scroll-Handler für Firmenprofil-Fehler
+  const scrollToBrandField = () => {
+    brandFieldRef.current?.scrollIntoView({ 
+      behavior: 'smooth', 
+      block: 'center' 
+    });
+    // Fokus setzen nach kurzer Verzögerung (für Scroll-Animation)
+    setTimeout(() => {
+      const trigger = brandFieldRef.current?.querySelector('[role="combobox"]');
+      (trigger as HTMLElement)?.focus();
+    }, 500);
+  };
 
   // Validierung für Step 1 (Inhalt)
   const validateStep1 = async (): Promise<boolean> => {
@@ -251,7 +265,7 @@ export function NewsletterWizard({ defaultValues, onSubmit, onSaveDraft, onCance
                 control={form.control}
                 name="brand_id"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem ref={brandFieldRef}>
                     <FormLabel>Firmenprofil</FormLabel>
                     <FormControl>
                       <BrandSelector
@@ -645,7 +659,11 @@ export function NewsletterWizard({ defaultValues, onSubmit, onSaveDraft, onCance
           <div className="max-w-3xl mx-auto px-4 py-4">
             {/* Firmenprofil fehlt Warning */}
             {!hasBrandId && currentStep === 3 && (
-              <div data-slot="alert" className="flex items-start gap-2 text-sm text-destructive bg-destructive/5 rounded-lg px-4 py-3 mb-3">
+              <div 
+                data-slot="alert" 
+                onClick={scrollToBrandField}
+                className="flex items-start gap-2 text-sm text-destructive bg-destructive/5 rounded-lg px-4 py-3 mb-3 cursor-pointer hover:bg-destructive/10 transition-colors"
+              >
                 <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="font-medium">Firmenprofil fehlt</p>

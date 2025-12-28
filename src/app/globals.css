@@ -456,6 +456,13 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
+  /* ─── iOS Overscroll Fix ─── */
+  /* Prevent background color mismatch during iOS overscroll on landing page */
+  html:has(.landing-readonly), 
+  html:has(.landing-readonly) body {
+    background-color: oklch(0.105 0.020 256);
+  }
+
   /* ─── Landing Page Read-Only Feel ─── */
   /* Applied to marketing/landing sections for premium, non-editable appearance */
   .landing-readonly {

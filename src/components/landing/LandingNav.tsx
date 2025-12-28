@@ -17,8 +17,8 @@ export function LandingNav() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 h-16">
-      {/* Background with blur */}
-      <div className="absolute inset-0 bg-[oklch(0.105_0.020_256/0.85)] backdrop-blur-md border-b border-[oklch(0.20_0.02_260/0.5)]" />
+      {/* Background with blur - Extended for iOS overscroll */}
+      <div className="absolute inset-0 -top-20 bg-[oklch(0.105_0.020_256/0.85)] backdrop-blur-md border-b border-[oklch(0.20_0.02_260/0.5)]" />
 
       <nav className="relative h-full container mx-auto px-4 lg:px-8 flex items-center justify-between">
         {/* Logo / Brand */}
@@ -83,16 +83,14 @@ export function LandingNav() {
                 {item.label}
               </Link>
             ))}
-            <div className="pt-2">
-              <Button
-                asChild
-                className="w-full h-12 text-base font-semibold bg-white text-[oklch(0.12_0.02_260)] hover:bg-[oklch(0.96_0.005_250)]"
+            <div className="pt-2 border-t border-[oklch(0.20_0.02_260/0.5)] mt-2">
+              <Link
+                href="/newsletters/new"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-4 py-3 text-base font-medium text-[oklch(0.75_0.01_260)] hover:text-white hover:bg-[oklch(0.18_0.02_260)] rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[oklch(0.65_0.15_250)]"
               >
-                <Link href="/newsletters/new" onClick={() => setMobileMenuOpen(false)}>
-                  Newsletter erstellen
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
+                Newsletter erstellen →
+              </Link>
             </div>
           </div>
         </div>

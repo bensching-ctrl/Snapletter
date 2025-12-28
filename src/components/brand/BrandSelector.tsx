@@ -33,10 +33,14 @@ export function BrandSelector({ value, onChange, placeholder = 'Firmenprofil aus
       value={value || undefined}
       onValueChange={(v) => onChange(v === '__none__' ? null : v)}
     >
-      <SelectTrigger>
+      <SelectTrigger className="touch-manipulation">
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent
+        position="popper"
+        sideOffset={4}
+        className="z-[100]"
+      >
         {brands?.length === 0 ? (
           <SelectItem value="__empty__" disabled>
             Noch keine Firmenprofile angelegt
