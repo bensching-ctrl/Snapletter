@@ -458,9 +458,14 @@
 
   /* ─── iOS Overscroll Fix ─── */
   /* Prevent background color mismatch during iOS overscroll on landing page */
-  html:has(.landing-readonly), 
+  html:has(.landing-readonly),
   html:has(.landing-readonly) body {
     background-color: oklch(0.105 0.020 256);
+  }
+
+  /* Hide main Navigation on landing page - LandingNav provides its own header */
+  html:has(.landing-readonly) header:not(.fixed) {
+    display: none;
   }
 
   /* ─── Landing Page Read-Only Feel ─── */
