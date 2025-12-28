@@ -141,7 +141,14 @@ function GenerationTimeBadge() {
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section
+      className="relative flex items-center overflow-hidden hero-viewport-fallback"
+      style={{
+        // Use svh (small viewport height) for mobile browsers with dynamic UI
+        // Falls back via CSS @supports to 100vh/-webkit-fill-available for older browsers
+        minHeight: '100svh',
+      }}
+    >
 
       {/* ═══ BACKGROUND SYSTEM - Static Material Quality ═══ */}
       {/* All layers are static. No animations. Optimized for screenshot quality. */}

@@ -184,6 +184,19 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   VIEWPORT UNITS - iOS Mobile Safari Support
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Fallback for browsers that don't support svh units */
+@supports not (min-height: 100svh) {
+  .hero-viewport-fallback {
+    min-height: 100vh;
+    /* iOS Safari workaround: subtract address bar height estimate */
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
    ANIMATIONS
    ═══════════════════════════════════════════════════════════════ */
 
