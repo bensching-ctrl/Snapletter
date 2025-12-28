@@ -1,0 +1,619 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+}
+
+:root {
+  /* ═══════════════════════════════════════════════════════════════
+     DESIGN TOKENS - Premium SaaS Design System
+     Modern Blue Color Palette
+     ═══════════════════════════════════════════════════════════════ */
+
+  /* UI Transitions */
+  --ui-transition-fast: 150ms;
+  --ui-transition-normal: 200ms;
+  --ui-transition-slow: 300ms;
+  --ui-easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Spacing Scale */
+  --space-xs: 0.25rem;  /* 4px */
+  --space-sm: 0.5rem;   /* 8px */
+  --space-md: 1rem;     /* 16px */
+  --space-lg: 1.5rem;   /* 24px */
+  --space-xl: 2rem;     /* 32px */
+  --space-2xl: 2.5rem;  /* 40px */
+  --space-3xl: 3rem;    /* 48px */
+
+  /* Border Radius - Slightly larger for modern feel */
+  --radius: 0.75rem;    /* 12px base */
+
+  /* ─── Light Mode Colors ─── */
+
+  /* Background Hierarchy */
+  --background: oklch(0.985 0.002 250);           /* Subtle cool white */
+  --foreground: oklch(0.13 0.02 260);             /* Deep blue-black for text */
+
+  /* Card & Surface */
+  --card: oklch(1 0 0);                           /* Pure white cards */
+  --card-foreground: oklch(0.13 0.02 260);
+
+  /* Popover */
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.13 0.02 260);
+
+  /* Primary - Modern Professional Blue */
+  --primary: oklch(0.55 0.18 250);                /* Rich blue - primary actions */
+  --primary-foreground: oklch(0.99 0 0);          /* White text on primary */
+
+  /* Secondary - Soft neutral */
+  --secondary: oklch(0.96 0.005 250);             /* Very light blue-gray */
+  --secondary-foreground: oklch(0.25 0.02 260);
+
+  /* Muted - Subtle backgrounds */
+  --muted: oklch(0.965 0.005 250);                /* Light blue-gray muted */
+  --muted-foreground: oklch(0.45 0.02 260);       /* Medium gray for secondary text */
+
+  /* Accent - Subtle highlight */
+  --accent: oklch(0.96 0.015 250);                /* Slightly tinted accent */
+  --accent-foreground: oklch(0.20 0.02 260);
+
+  /* Destructive */
+  --destructive: oklch(0.55 0.22 25);             /* Professional red */
+
+  /* Borders & Inputs */
+  --border: oklch(0.91 0.008 250);                /* Subtle blue-tinted border */
+  --input: oklch(0.91 0.008 250);
+  --ring: oklch(0.55 0.18 250);                   /* Same as primary for focus */
+
+  /* Chart Colors - Harmonious blue palette */
+  --chart-1: oklch(0.55 0.18 250);                /* Primary blue */
+  --chart-2: oklch(0.65 0.14 220);                /* Teal */
+  --chart-3: oklch(0.45 0.12 260);                /* Deep blue */
+  --chart-4: oklch(0.75 0.10 200);                /* Light cyan */
+  --chart-5: oklch(0.60 0.16 280);                /* Purple-blue */
+
+  /* Sidebar */
+  --sidebar: oklch(0.99 0.002 250);
+  --sidebar-foreground: oklch(0.13 0.02 260);
+  --sidebar-primary: oklch(0.55 0.18 250);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.96 0.015 250);
+  --sidebar-accent-foreground: oklch(0.20 0.02 260);
+  --sidebar-border: oklch(0.91 0.008 250);
+  --sidebar-ring: oklch(0.55 0.18 250);
+}
+
+.dark {
+  /* ─── Dark Mode Colors ─── */
+
+  /* Background Hierarchy */
+  --background: oklch(0.12 0.015 260);            /* Deep blue-black */
+  --foreground: oklch(0.95 0.005 250);            /* Soft white */
+
+  /* Card & Surface */
+  --card: oklch(0.16 0.018 260);                  /* Elevated dark surface */
+  --card-foreground: oklch(0.95 0.005 250);
+
+  /* Popover */
+  --popover: oklch(0.18 0.02 260);
+  --popover-foreground: oklch(0.95 0.005 250);
+
+  /* Primary - Bright blue for dark mode */
+  --primary: oklch(0.65 0.20 250);                /* Brighter blue for dark bg */
+  --primary-foreground: oklch(0.12 0.015 260);    /* Dark text on bright primary */
+
+  /* Secondary */
+  --secondary: oklch(0.22 0.02 260);
+  --secondary-foreground: oklch(0.92 0.005 250);
+
+  /* Muted */
+  --muted: oklch(0.20 0.018 260);
+  --muted-foreground: oklch(0.60 0.01 250);
+
+  /* Accent */
+  --accent: oklch(0.22 0.025 260);
+  --accent-foreground: oklch(0.92 0.005 250);
+
+  /* Destructive */
+  --destructive: oklch(0.60 0.20 25);
+
+  /* Borders & Inputs */
+  --border: oklch(0.28 0.02 260);
+  --input: oklch(0.25 0.02 260);
+  --ring: oklch(0.65 0.20 250);
+
+  /* Chart Colors */
+  --chart-1: oklch(0.65 0.20 250);
+  --chart-2: oklch(0.70 0.15 200);
+  --chart-3: oklch(0.75 0.12 280);
+  --chart-4: oklch(0.60 0.18 220);
+  --chart-5: oklch(0.55 0.15 300);
+
+  /* Sidebar */
+  --sidebar: oklch(0.14 0.018 260);
+  --sidebar-foreground: oklch(0.95 0.005 250);
+  --sidebar-primary: oklch(0.65 0.20 250);
+  --sidebar-primary-foreground: oklch(0.12 0.015 260);
+  --sidebar-accent: oklch(0.22 0.025 260);
+  --sidebar-accent-foreground: oklch(0.92 0.005 250);
+  --sidebar-border: oklch(0.28 0.02 260);
+  --sidebar-ring: oklch(0.65 0.20 250);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
+
+@keyframes line-flow {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  15% {
+    opacity: 0.12;
+  }
+  50% {
+    opacity: 0.06;
+  }
+  85% {
+    opacity: 0.12;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+.animate-line-flow {
+  animation: line-flow 12s linear infinite;
+}
+
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 2.5s ease-in-out infinite;
+}
+
+/* ─── Hero Premium Animations ─── */
+
+/* Slow gradient shift for headline accent text */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 20s ease-in-out infinite;
+}
+
+/* Typewriter cursor blink */
+@keyframes cursor-blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+.animate-cursor {
+  animation: cursor-blink 1s steps(1) infinite;
+}
+
+/* Subtle badge pulse */
+@keyframes badge-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 oklch(0.55 0.18 250 / 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 6px oklch(0.55 0.18 250 / 0);
+  }
+}
+
+.animate-badge-pulse {
+  animation: badge-pulse 3s ease-in-out infinite;
+}
+
+/* Progress bar fill */
+@keyframes progress-fill {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Fade in up for scroll reveal */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+/* Staggered delays for children */
+.stagger-1 { animation-delay: 0ms; }
+.stagger-2 { animation-delay: 100ms; }
+.stagger-3 { animation-delay: 200ms; }
+.stagger-4 { animation-delay: 300ms; }
+.stagger-5 { animation-delay: 400ms; }
+
+/* ─── Hero Background Animations ─── */
+
+/* Very slow ambient gradient movement - 30s loop */
+@keyframes ambient-gradient {
+  0%, 100% {
+    transform: translate(0%, 0%) scale(1);
+    opacity: 0.12;
+  }
+  25% {
+    transform: translate(5%, -3%) scale(1.02);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translate(-3%, 5%) scale(1);
+    opacity: 0.10;
+  }
+  75% {
+    transform: translate(-5%, -2%) scale(1.03);
+    opacity: 0.14;
+  }
+}
+
+.animate-ambient-1 {
+  animation: ambient-gradient 30s ease-in-out infinite;
+}
+
+.animate-ambient-2 {
+  animation: ambient-gradient 35s ease-in-out infinite reverse;
+  animation-delay: -10s;
+}
+
+.animate-ambient-3 {
+  animation: ambient-gradient 40s ease-in-out infinite;
+  animation-delay: -20s;
+}
+
+/* Grid breathing animation - extremely subtle */
+@keyframes grid-breathe {
+  0%, 100% {
+    opacity: 0.03;
+  }
+  50% {
+    opacity: 0.05;
+  }
+}
+
+.animate-grid-breathe {
+  animation: grid-breathe 20s ease-in-out infinite;
+}
+
+/* ─── Skeleton Shimmer (Subtle) ─── */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(0.92 0.005 250) 0%,
+    oklch(0.96 0.005 250) 50%,
+    oklch(0.92 0.005 250) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* ─── Card Hover Micro-Interaction ─── */
+.card-hover {
+  transition: transform 150ms ease-out, box-shadow 150ms ease-out, border-color 150ms ease-out;
+}
+
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px -8px oklch(0.20 0.02 260 / 0.12);
+}
+
+/* ─── Scroll Reveal ─── */
+@keyframes reveal-up {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-on-scroll {
+  animation: reveal-up 160ms ease-out forwards;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MOTION SAFETY - prefers-reduced-motion
+   ═══════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .animate-line-flow,
+  .animate-bounce-subtle,
+  .animate-pulse-slow,
+  .animate-ambient-1,
+  .animate-ambient-2,
+  .animate-ambient-3,
+  .animate-grid-breathe,
+  .animate-gradient-shift,
+  .animate-cursor,
+  .animate-badge-pulse,
+  .animate-fade-in-up,
+  .animate-shimmer,
+  .reveal-on-scroll {
+    animation: none !important;
+  }
+
+  .card-hover:hover {
+    transform: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* ─── Landing Page Read-Only Feel ─── */
+  /* Applied to marketing/landing sections for premium, non-editable appearance */
+  .landing-readonly {
+    cursor: default;
+    user-select: none;
+  }
+
+  .landing-readonly a,
+  .landing-readonly button {
+    cursor: pointer;
+  }
+
+  .landing-readonly input,
+  .landing-readonly textarea {
+    cursor: text;
+    user-select: text;
+  }
+
+  /* ─── Read-Only Content Utilities ─── */
+  /* 
+   * Basis-Klasse für nicht-editierbare Inhalte (Dashboard-Kontext)
+   * WICHTIG: user-select: none verhindert NICHT Screenreader-Zugriff
+   * → Accessibility bleibt voll erhalten
+   */
+  .readonly {
+    cursor: default;
+    user-select: none;
+  }
+
+  /* Links und Buttons behalten cursor: pointer UND Fokus-Styles */
+  .readonly a,
+  .readonly button,
+  .readonly [role="button"],
+  .readonly [role="link"] {
+    cursor: pointer;
+    user-select: auto;
+    /* Fokus-Styles bleiben erhalten (keine outline: none) */
+  }
+
+  /* Inputs/Textareas behalten cursor: text UND volle Accessibility */
+  .readonly input,
+  .readonly textarea,
+  .readonly select,
+  .readonly [contenteditable="true"] {
+    cursor: text;
+    user-select: text;
+  }
+
+  /* 
+   * Alternative: Für Texte, die explizit kopierbar sein sollen
+   * Use Case: API-Keys, generierte Newsletter-Inhalte, Code-Snippets
+   */
+  .readonly-selectable {
+    cursor: default;
+    user-select: text; /* Text kann markiert & kopiert werden */
+  }
+
+  /* Dezenter Hover-State für klickbare Read-Only-Elemente */
+  .readonly-clickable {
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 150ms ease-out;
+  }
+
+  .readonly-clickable:hover {
+    background-color: oklch(0.96 0.005 250); /* Muted background */
+  }
+
+  .readonly-clickable:focus-visible {
+    outline: 2px solid oklch(0.55 0.18 250); /* Primary ring */
+    outline-offset: 2px;
+  }
+
+  .dark .readonly-clickable:hover {
+    background-color: oklch(0.20 0.018 260); /* Dark mode muted */
+  }
+
+  .dark .readonly-clickable:focus-visible {
+    outline-color: oklch(0.65 0.20 250); /* Dark mode primary */
+  }
+
+  /* ─── Static UI Element Defaults ─── */
+  /*
+   * Verhindert I-Beam-Cursor auf statischen UI-Elementen wie:
+   * - Page Headers, Section Headers
+   * - Card Titles, Descriptions
+   * - Stepper Labels, Badge Text
+   * - Alert/Callout Text
+   *
+   * WICHTIG: Diese Regeln gelten NUR für nicht-interaktive Elemente.
+   * Inputs, Textareas und contenteditable behalten cursor: text.
+   */
+
+  /* Stepper-Komponenten */
+  [data-slot="stepper"],
+  [data-slot="stepper-label"],
+  .stepper-label {
+    cursor: default;
+    user-select: none;
+  }
+
+  /* Alert/Callout-Texte (statische Hinweise) */
+  [data-slot="alert"],
+  [data-slot="callout"],
+  .alert-text,
+  .callout-text {
+    cursor: default;
+    user-select: none;
+  }
+
+  /* Page und Section Headers */
+  [data-slot="page-header"],
+  [data-slot="section-header"],
+  .page-header,
+  .section-header {
+    cursor: default;
+    user-select: none;
+  }
+
+  /* Spezifische Ausnahme: FormDescription soll cursor: default haben */
+  [data-slot="form-description"] {
+    cursor: default;
+    user-select: none;
+  }
+
+  /* ─── Typography Hierarchy ─── */
+
+  /* Headlines - Tighter tracking, bolder weight */
+  h1 {
+    @apply text-3xl font-bold tracking-tight;
+    letter-spacing: -0.025em;
+  }
+
+  h2 {
+    @apply text-2xl font-semibold tracking-tight;
+    letter-spacing: -0.02em;
+  }
+
+  h3 {
+    @apply text-xl font-semibold;
+    letter-spacing: -0.015em;
+  }
+
+  h4 {
+    @apply text-lg font-semibold;
+  }
+
+  /* Improved text rendering */
+  p, span, li {
+    @apply leading-relaxed;
+  }
+
+  /* Subtle selection color matching primary */
+  ::selection {
+    background-color: oklch(0.55 0.18 250 / 0.2);
+  }
+
+  .dark ::selection {
+    background-color: oklch(0.65 0.20 250 / 0.3);
+  }
+}
